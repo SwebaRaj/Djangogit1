@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h2>view books here</h2>
+<!--<table>-->
+<!--    <tr>-->
+<!--        <th>title</th><th>author</th><th>price</th></tr>-->
+<!--{% for i in book %}-->
+<!--<tr>-->
+<!--    <td>{{i.title}}</td>-->
+<!--    <td>{{i.author}}</td>-->
+<!--    <td>{{i.price}}</td>-->
+<!--</tr>-->
+<!--{% endfor %}-->
+<!--</table>-->
+
+
+<!--<ol>-->
+<!--    {% for i in book %}-->
+<!--    <li>Book Details-->
+<!--        <ul>-->
+<!--            <li>Title:{{i.title}}</li>-->
+<!--            <li>Author:{{i.author}}</li>-->
+<!--            <li>Price:{{i.price}}</li>-->
+<!--        </ul>-->
+<!--    </li>-->
+<!--    {% endfor %}-->
+<!--</ol>-->
+
+<table class="table table-striped">
+    <tr>
+        <th>cover</th><th>title</th><th>author</th><th>language</th><th>pdf</th><th>view</th><th>edit</th><th>delete</th>
+    </tr>
+    {% for i in book %}
+    <tr>
+        <td><img src="{{i.cover.url}}" height="200px" width="500px"></td>
+        <td>{{i.title}}</td>
+        <td>{{i.author}}</td>
+        <td>{{i.language}}</td>
+        <td><a href="{{i.pdf.url}}">DOWNLOAD</a></td>
+        <td><a href="{% url 'books:viewdetails' i.id  %}" class="btn btn-outline-light">View</a></td>
+        <td><a href="{% url 'books:edit' i.id %}" class="btn btn-outline-light">Edit</a></td>
+        <td><a href="{% url 'books:delete' i.id %}" class="btn btn-outline-light">Delete</a></td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock %}
